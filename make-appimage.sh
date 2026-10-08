@@ -10,6 +10,7 @@ export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}
 export ICON=/usr/share/icons/hicolor/256x256/apps/ai.storyteller.effectcraft.png
 export DESKTOP=/usr/share/applications/ai.storyteller.effectcraft.desktop
 export DEPLOY_OPENGL=1
+export DEPLOY_PULSE=1
 
 # Deploy dependencies
 quick-sharun /usr/bin/effectcraft /usr/bin/effectcraft-cli /usr/bin/zenity
