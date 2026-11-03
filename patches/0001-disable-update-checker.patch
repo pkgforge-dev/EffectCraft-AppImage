@@ -1,0 +1,31 @@
+diff --git a/crates/ui-egui/src/updates_ui.rs b/crates/ui-egui/src/updates_ui.rs
+index bb8187f..6eaa67e 100644
+--- a/crates/ui-egui/src/updates_ui.rs
++++ b/crates/ui-egui/src/updates_ui.rs
+@@ -39,22 +39,13 @@ impl Default for Runtime {
+ impl EffectcraftApp {
+     /// Whether the app asks for a newer release when it starts (off until the desktop app turns it on).
+     #[cfg(not(target_arch = "wasm32"))]
+-    pub fn set_startup_update_check(&mut self, on: bool) {
+-        self.updates_rt.startup_check = on;
++    pub fn set_startup_update_check(&mut self, _on: bool) {
++        // The AppImage is updated by its own package manager; no check is ever asked for.
+     }
+ }
+ 
+-pub(crate) fn check(app: &mut EffectcraftApp) {
+-    #[cfg(not(target_arch = "wasm32"))]
+-    {
+-        app.updates_rt.check_requested = true;
+-        app.updates_rt.manual_window_open = true;
+-    }
+-    #[cfg(target_arch = "wasm32")]
+-    {
+-        app.updates_rt.manual_window_open = true;
+-        app.updates_rt.status_message = Some(crate::i18n::tr("Update check is not supported in the web browser.").to_string());
+-    }
++pub(crate) fn check(_app: &mut EffectcraftApp) {
++    // Help > Check for Updates would offer to replace this build with an upstream release.
+ }
+ 
+ pub(crate) fn tick(app: &mut EffectcraftApp, ctx: &egui::Context) {
